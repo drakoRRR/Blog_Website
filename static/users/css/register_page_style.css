@@ -11,7 +11,7 @@ body {
 }
 
 
-.login-container {
+.email-container {
     width: 300px;
     padding: 30px;
     background-color: white;
@@ -74,4 +74,8 @@ h2 {
 
 .signin-text {
     margin-top: 20px;
+}
+
+a {
+    text-decoration: none;
 }

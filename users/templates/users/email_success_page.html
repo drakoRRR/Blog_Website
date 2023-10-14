@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'users/css/' %}">
+    <link rel="stylesheet" href="{% static 'users/css/register_page_style.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,7 @@
         </div>
         <div class="second-text">
             <h3>Your email has been successfully verified</h3>
-            <button type="submit"><a href="{% url 'blog:feed' %}">Main Page</a></button>
+            <a href="{% url 'blog:feed' %}"><button type="submit">Main Page</button></a>
         </div>
     </div>
 {% endblock %}
