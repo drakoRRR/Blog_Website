@@ -1,27 +1,15 @@
+{% extends 'blog/base_page.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block title %}
     <title>Feed Page</title>
+{% endblock %}
+
+{% block css %}
     <link rel="stylesheet" href="{% static 'blog/css/feed_page_styles.css' %}">
-</head>
-<body>
-<div class="navbar">
-    <div class="right-nav">
-        <a href="#">Login</a>
-        <a href="#">Register</a>
-    </div>
-    <div class="center-nav">
-        <a href="#">Feed</a>
-    </div>
-    <div class="search-box">
-        <input type="text" placeholder="Search">
-        <button type="submit">Search</button>
-    </div>
-</div>
+{% endblock %}
+
+{% block content %}
 <div class="main-container">
     <div class="container">
         <div class="feed">
@@ -140,5 +128,4 @@
     </div>
 </div>
 
-</body>
-</html>
+{% endblock %}
