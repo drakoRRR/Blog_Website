@@ -119,6 +119,8 @@
             </div>
         </div>
     </div>
+
+    {% if user.is_authenticated %}
     <div class="sidebar">
         <img src="avatar.jpg" alt="User Avatar" class="user-avatar">
         <p class="user-status">Online</p>
@@ -126,6 +128,7 @@
         <button class="settings-button">Settings</button>
         <button class="logout-button">Logout</button>
     </div>
+    {% endif %}
 </div>
 
 {% endblock %}

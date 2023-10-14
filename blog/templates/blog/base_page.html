@@ -11,11 +11,16 @@
 <body>
 <div class="navbar">
     <div class="right-nav">
-        <a href="#">Login</a>
-        <a href="#">Register</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'users:logout' %}">Logout</a>
+            <a href="#">Profile</a>
+        {% else %}
+            <a href="{% url 'users:login' %}">Login</a>
+            <a href="{% url 'users:register' %}">Register</a>
+        {% endif %}
     </div>
     <div class="center-nav">
-        <a href="#">Feed</a>
+        <a href="{% url 'blog:feed' %}">Feed</a>
     </div>
     <div class="search-box">
         <input type="text" placeholder="Search">
