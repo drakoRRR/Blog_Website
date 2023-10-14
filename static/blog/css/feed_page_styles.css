@@ -1,0 +1,296 @@
+body {
+    font-family: Arial, sans-serif;
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: black;
+    color: white;
+    padding: 15px; /* Increased padding for a bigger navbar */
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    padding: 10px 20px; /* Adjust the padding for buttons */
+    margin-right: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Add transition for smooth hover effect */
+}
+
+.navbar .right-nav {
+    text-align: right;
+    display: flex;
+}
+
+.navbar .center-nav {
+    display: flex;
+}
+
+.navbar .center-nav a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.navbar .center-nav a:hover {
+    background-color: #0056b3;
+}
+
+.navbar a:hover {
+    background-color: #0056b3;
+}
+
+.search-box {
+    display: flex;
+}
+
+.search-box input[type="text"] {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.search-box button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-box button:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Other existing styles for post elements (post-info, post-image, post-text, like-button, comment-button) */
+
+.post {
+    border: 1px solid #24AADB;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.post-info {
+    color: #24AADB;
+    font-size: 12px;
+}
+
+.post-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px 0;
+}
+
+.post-text {
+    margin: 10px 0;
+}
+
+.like-button, .comment-button {
+    background-color: #244EDB;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.like-button:hover, .comment-button:hover {
+    background-color: #24AADB;
+}
+
+.user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin-top: 20px; /* Add margin to the top to create space from .user-menu-container */
+    margin-bottom: 20px;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.user-name, .user-status {
+    margin: 5px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-options a {
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.menu-options a:hover {
+    color: #007bff;
+}
+
+.feed {
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.sort-dropdown {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#sort-options {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#confirm-sort {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#confirm-sort:hover {
+    background-color: #0056b3;
+}
+
+.sort-by {
+    margin-right: 5px;
+}
+
+.sidebar {
+    width: 200px;
+    height: 330px;
+    margin-left: 20px;
+    margin-top: 20px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-status {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.profile-button, .settings-button, .logout-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.profile-button:hover, .settings-button:hover, .logout-button:hover {
+    background-color: #0056b3;
+}
+
+.no-underline {
+    text-decoration: none; /* Remove the underline */
+    color: inherit; /* Inherit the color from the parent div */
+}
+
+.comment-section {
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.comment {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.comment .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.comment .user-info .mini-avatar {
+    width: 30px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.comment .user-info .user-nickname a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.comment .comment-text {
+    margin-top: 5px;
+}
+
+/* Style for the comment input field */
+.comment-input {
+    width: 96%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+}

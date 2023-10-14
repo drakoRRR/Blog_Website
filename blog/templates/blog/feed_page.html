@@ -1,0 +1,144 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed Page</title>
+    <link rel="stylesheet" href="{% static 'blog/css/feed_page_styles.css' %}">
+</head>
+<body>
+<div class="navbar">
+    <div class="right-nav">
+        <a href="#">Login</a>
+        <a href="#">Register</a>
+    </div>
+    <div class="center-nav">
+        <a href="#">Feed</a>
+    </div>
+    <div class="search-box">
+        <input type="text" placeholder="Search">
+        <button type="submit">Search</button>
+    </div>
+</div>
+<div class="main-container">
+    <div class="container">
+        <div class="feed">
+            <div class="sort-dropdown">
+                <p class="sort-by">Sort by</p>
+                <select id="sort-options">
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                    <option value="popular">Popular</option>
+                </select>
+                <button id="confirm-sort" class="comment-button">Confirm</button>
+            </div>
+            <div class="post">
+                <div class="user-info">
+                    <div class="mini-avatar"></div>
+                    <div class="user-nickname"><a href="" class="no-underline">UserNickname</a></div>
+                </div>
+                <div class="post-info">Posted on: October 11, 2023</div>
+                <img src="image.jpg" alt="Sample Image" class="post-image">
+                <p class="post-text">This is a sample post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique ex eu turpis ultrices, eget feugiat elit vulputate. Fusce eleifend vel eros in ullamcorper.</p>
+                <button class="like-button"><strong>35</strong> Like</button>
+
+                <div class="comment-section">
+                    <h3>Comments</h3>
+                    <div class="comment">
+                        <div class="user-info">
+                            <div class="mini-avatar"></div>
+                            <div class="user-nickname"><a href="" class="no-underline">Commenter1</a></div>
+                        </div>
+                        <p class="comment-text">This is the first comment on the post.</p>
+                    </div>
+                    <div class="comment">
+                        <div class="user-info">
+                            <div class="mini-avatar"></div>
+                            <div class="user-nickname"><a href="" class="no-underline">Commenter2</a></div>
+                        </div>
+                        <p class="comment-text">Another user's comment on the post.</p>
+                    </div>
+                </div>
+
+                <textarea class="comment-input" placeholder="Write a comment..."></textarea>
+
+                <button class="comment-button" type="submit">Comment</button>
+            </div>
+
+            <div class="post">
+                <div class="user-info">
+                    <div class="mini-avatar"></div>
+                    <div class="user-nickname"><a href="" class="no-underline">UserNickname</a></div>
+                </div>
+                <div class="post-info">Posted on: October 11, 2023</div>
+                <p class="post-text">This is a sample post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique ex eu turpis ultrices, eget feugiat elit vulputate. Fusce eleifend vel eros in ullamcorper.</p>
+                <button class="like-button"><strong>35</strong> Like</button>
+                <div class="comment-section">
+                    <h3>Comments</h3>
+                    <div class="comment">
+                        <div class="user-info">
+                            <div class="mini-avatar"></div>
+                            <div class="user-nickname"><a href="" class="no-underline">Commenter1</a></div>
+                        </div>
+                        <p class="comment-text">This is the first comment on the post.</p>
+                    </div>
+                    <div class="comment">
+                        <div class="user-info">
+                            <div class="mini-avatar"></div>
+                            <div class="user-nickname"><a href="" class="no-underline">Commenter2</a></div>
+                        </div>
+                        <p class="comment-text">Another user's comment on the post.</p>
+                    </div>
+                </div>
+
+                <textarea class="comment-input" placeholder="Write a comment..."></textarea>
+
+                <button class="comment-button" type="submit">Comment</button>
+            </div>
+
+            <div class="post">
+                <div class="user-info">
+                    <div class="mini-avatar"></div>
+                    <div class="user-nickname"><a href="" class="no-underline">UserNickname</a></div>
+                </div>
+                <div class="post-info">Posted on: October 11, 2023</div>
+                <img src="image.jpg" alt="Sample Image" class="post-image">
+                <p class="post-text">This is a sample post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique ex eu turpis ultrices, eget feugiat elit vulputate. Fusce eleifend vel eros in ullamcorper.</p>
+                <button class="like-button"><strong>35</strong> Like</button>
+                <div class="comment-section">
+                    <h3>Comments</h3>
+                    <div class="comment">
+                        <div class="user-info">
+                            <div class="mini-avatar"></div>
+                            <div class="user-nickname"><a href="" class="no-underline">Commenter1</a></div>
+                        </div>
+                        <p class="comment-text">This is the first comment on the post.</p>
+                    </div>
+                    <div class="comment">
+                        <div class="user-info">
+                            <div class="mini-avatar"></div>
+                            <div class="user-nickname"><a href="" class="no-underline">Commenter2</a></div>
+                        </div>
+                        <p class="comment-text">Another user's comment on the post.</p>
+                    </div>
+                </div>
+
+                <textarea class="comment-input" placeholder="Write a comment..."></textarea>
+
+                <button class="comment-button" type="submit">Comment</button>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+        <img src="avatar.jpg" alt="User Avatar" class="user-avatar">
+        <p class="user-status">Online</p>
+        <button class="profile-button">Profile</button>
+        <button class="settings-button">Settings</button>
+        <button class="logout-button">Logout</button>
+    </div>
+</div>
+
+</body>
+</html>
