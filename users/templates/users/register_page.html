@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="login-container">
+<div class="email-container">
     <h2>Sign Up</h2>
     <form action="{% url 'users:register' %}" method="post">
         {% csrf_token %}

@@ -3,11 +3,11 @@ from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView, ListView
+from django.views.generic import CreateView, TemplateView, ListView, UpdateView
 
 from blog.models import Post
 from common.views import CommentFormMixin
-from users.forms import UserLoginForm, UserRegisterForm, CommentForm
+from users.forms import UserLoginForm, UserRegisterForm, CommentForm, ProfileForm
 from users.models import User, EmailVerification
 
 
@@ -63,4 +63,16 @@ class ProfileView(CommentFormMixin, ListView):
         context['form'] = CommentForm()
         return context
 
+
+class SettingsView(UpdateView):
+    model = User
+    form_class = ProfileForm
+    template_name = 'users/settings_page.html'
+
+    def get_success_url(self):
+        return reverse_lazy('users:profile', args=(self.object.id,))
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
 

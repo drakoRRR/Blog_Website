@@ -1,6 +1,6 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path
-from .views import LoginUserView, RegistrationView, EmailVerificationView, ProfileView
+from .views import LoginUserView, RegistrationView, EmailVerificationView, ProfileView, SettingsView
 
 app_name = 'users'
 
@@ -13,4 +13,6 @@ urlpatterns = [
 
     path('profile/<int:user_id>/', ProfileView.as_view(), name='profile'),
     path('profile/<int:user_id>/<int:post_id>', ProfileView.as_view(), name='profile_with_post'),
+
+    path('profile/settings/<int:pk>', SettingsView.as_view(), name='settings'),
 ]

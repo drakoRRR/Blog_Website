@@ -295,10 +295,12 @@ body {
     margin-top: 10px;
 }
 
-  .profile-button {
-    text-decoration: none
-  }
 
-  .profile-button a {
+
+.profile-button a {
     color: inherit
-  }
+}
+
+  .no-underline {
+  text-decoration: none;
+}

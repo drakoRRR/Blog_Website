@@ -1,0 +1,44 @@
+{% extends 'blog/base_page.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Feed Page</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'users/css/settings_page_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Profile Settings</h2>
+    <form action="{% url 'users:settings' user.id %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.image.id_for_label }}">Change Avatar:</label>
+            {{ form.image }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">Change Nickname:</label>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.email.id_for_label }}">Email:</label>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.first_name.id_for_label }}">Change Name:</label>
+            {{ form.first_name }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.last_name.id_for_label }}">Change Surname:</label>
+            {{ form.last_name }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.description.id_for_label }}">Profile Description:</label>
+            {{ form.description }}
+        </div>
+        <button type="submit" class="btn">Save Changes</button>
+    </form>
+</div>
+{% endblock %}
