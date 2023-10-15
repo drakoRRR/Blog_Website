@@ -11,11 +11,11 @@
 
 {% block content %}
     <div class="container">
-        <div class="avatar"></div>
+        <div class="avatar"><img src="{% if user.image %}{{ user.image.url }}{% else %}#{% endif %}" alt="User Avatar" class="user-avatar"></div>
         <div class="profile-details">
             <div class="profile-name">{{ user.username }}</div>
             <div class="status">Online</div>
-            <button class="settings-button">Settings</button>
+            <button class="settings-button"><a class="no-underline" href="{% url 'users:settings' user.id %}">Settings</a></button>
             <button class="friend-button">Add Friend</button>
             <button class="message-button">Message</button>
             <a href="#friends" class="quantity-friends">Friends (10)</a>
@@ -25,7 +25,7 @@
         {% for post in posts %}
             <div class="post">
                 <div class="user-info">
-                    <div class="mini-avatar"></div>
+                    <img src="{% if user.image %}{{ user.image.url }}{% else %}#{% endif %}" alt="User Avatar" class="mini-avatar">
                     <div class="user-nickname"><a href="" class="no-underline">{{ post.author.username }}</a>
                     </div>
                 </div>

@@ -87,7 +87,6 @@ body {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: #244EDB;
     margin-right: 20px;
 }
 
@@ -228,4 +227,27 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-top: 10px;
+}
+
+.settings-button a, .friend-button a, .message-button a {
+    color: inherit
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 15px;
+}
+
+.mini-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
