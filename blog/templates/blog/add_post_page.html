@@ -1,0 +1,28 @@
+{% extends 'blog/base_page.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Feed Page</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'blog/css/add_post_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="new-post-form">
+        <h2>Create a New Post</h2>
+        <form action="{% url 'blog:create_post' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="{{ form.image.id_for_label }}">Upload an Image:</label>
+            {{ form.image }}
+
+            <label for="{{ form.description.id_for_label }}">Write a Description:</label>
+            {{ form.description }}
+
+            <button type="submit">Post</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
