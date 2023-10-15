@@ -10,125 +10,69 @@
 {% endblock %}
 
 {% block content %}
-<div class="main-container">
-    <div class="container">
-        <div class="feed">
-            <div class="sort-dropdown">
-                <p class="sort-by">Sort by</p>
-                <select id="sort-options">
-                    <option value="newest">Newest</option>
-                    <option value="oldest">Oldest</option>
-                    <option value="popular">Popular</option>
-                </select>
-                <button id="confirm-sort" class="comment-button">Confirm</button>
-            </div>
-            <div class="post">
-                <div class="user-info">
-                    <div class="mini-avatar"></div>
-                    <div class="user-nickname"><a href="" class="no-underline">UserNickname</a></div>
-                </div>
-                <div class="post-info">Posted on: October 11, 2023</div>
-                <img src="image.jpg" alt="Sample Image" class="post-image">
-                <p class="post-text">This is a sample post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique ex eu turpis ultrices, eget feugiat elit vulputate. Fusce eleifend vel eros in ullamcorper.</p>
-                <button class="like-button"><strong>35</strong> Like</button>
-
-                <div class="comment-section">
-                    <h3>Comments</h3>
-                    <div class="comment">
-                        <div class="user-info">
-                            <div class="mini-avatar"></div>
-                            <div class="user-nickname"><a href="" class="no-underline">Commenter1</a></div>
-                        </div>
-                        <p class="comment-text">This is the first comment on the post.</p>
-                    </div>
-                    <div class="comment">
-                        <div class="user-info">
-                            <div class="mini-avatar"></div>
-                            <div class="user-nickname"><a href="" class="no-underline">Commenter2</a></div>
-                        </div>
-                        <p class="comment-text">Another user's comment on the post.</p>
-                    </div>
+    <div class="main-container">
+        <div class="container">
+            <div class="feed">
+                <div class="sort-dropdown">
+                    <p class="sort-by">Sort by</p>
+                    <select id="sort-options">
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                        <option value="popular">Popular</option>
+                    </select>
+                    <button id="confirm-sort" class="comment-button">Confirm</button>
                 </div>
 
-                <textarea class="comment-input" placeholder="Write a comment..."></textarea>
-
-                <button class="comment-button" type="submit">Comment</button>
-            </div>
-
-            <div class="post">
-                <div class="user-info">
-                    <div class="mini-avatar"></div>
-                    <div class="user-nickname"><a href="" class="no-underline">UserNickname</a></div>
-                </div>
-                <div class="post-info">Posted on: October 11, 2023</div>
-                <p class="post-text">This is a sample post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique ex eu turpis ultrices, eget feugiat elit vulputate. Fusce eleifend vel eros in ullamcorper.</p>
-                <button class="like-button"><strong>35</strong> Like</button>
-                <div class="comment-section">
-                    <h3>Comments</h3>
-                    <div class="comment">
+                {% for post in object_list %}
+                    <div class="post">
                         <div class="user-info">
                             <div class="mini-avatar"></div>
-                            <div class="user-nickname"><a href="" class="no-underline">Commenter1</a></div>
+                            <div class="user-nickname"><a href="" class="no-underline">{{ post.author.username }}</a>
+                            </div>
                         </div>
-                        <p class="comment-text">This is the first comment on the post.</p>
-                    </div>
-                    <div class="comment">
-                        <div class="user-info">
-                            <div class="mini-avatar"></div>
-                            <div class="user-nickname"><a href="" class="no-underline">Commenter2</a></div>
+                        <div class="post-info">Posted on: {{ post.posted }}</div>
+                        <img src="image.jpg" alt="Sample Image" class="post-image">
+                        <p class="post-text">{{ post.text_post }}</p>
+
+                        <form action="{% url 'blog:like_post' post.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button class="like-button" type="submit" value="{{ post.id }}">
+                                <strong>{{ post.total_likes }}</strong> Like
+                            </button>
+                        </form>
+
+                        <div class="comment-section">
+                            <h3>Comments</h3>
+                            {% for comment in post.comments.all %}
+                                <div class="comment">
+                                    <div class="user-info">
+                                        <div class="mini-avatar"></div>
+                                        <div class="user-nickname"><a href=""
+                                                                      class="no-underline">{{ comment.author.username }}</a>
+                                        </div>
+                                    </div>
+                                    <p class="comment-text">{{ comment.text }}</p>
+                                </div>
+                            {% endfor %}
                         </div>
-                        <p class="comment-text">Another user's comment on the post.</p>
+
+                        <textarea class="comment-input" placeholder="Write a comment..."></textarea>
+
+                        <button class="comment-button" type="submit">Comment</button>
                     </div>
-                </div>
-
-                <textarea class="comment-input" placeholder="Write a comment..."></textarea>
-
-                <button class="comment-button" type="submit">Comment</button>
-            </div>
-
-            <div class="post">
-                <div class="user-info">
-                    <div class="mini-avatar"></div>
-                    <div class="user-nickname"><a href="" class="no-underline">UserNickname</a></div>
-                </div>
-                <div class="post-info">Posted on: October 11, 2023</div>
-                <img src="image.jpg" alt="Sample Image" class="post-image">
-                <p class="post-text">This is a sample post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique ex eu turpis ultrices, eget feugiat elit vulputate. Fusce eleifend vel eros in ullamcorper.</p>
-                <button class="like-button"><strong>35</strong> Like</button>
-                <div class="comment-section">
-                    <h3>Comments</h3>
-                    <div class="comment">
-                        <div class="user-info">
-                            <div class="mini-avatar"></div>
-                            <div class="user-nickname"><a href="" class="no-underline">Commenter1</a></div>
-                        </div>
-                        <p class="comment-text">This is the first comment on the post.</p>
-                    </div>
-                    <div class="comment">
-                        <div class="user-info">
-                            <div class="mini-avatar"></div>
-                            <div class="user-nickname"><a href="" class="no-underline">Commenter2</a></div>
-                        </div>
-                        <p class="comment-text">Another user's comment on the post.</p>
-                    </div>
-                </div>
-
-                <textarea class="comment-input" placeholder="Write a comment..."></textarea>
-
-                <button class="comment-button" type="submit">Comment</button>
+                {% endfor %}
             </div>
         </div>
     </div>
 
     {% if user.is_authenticated %}
-    <div class="sidebar">
-        <img src="avatar.jpg" alt="User Avatar" class="user-avatar">
-        <p class="user-status">Online</p>
-        <button class="profile-button">Profile</button>
-        <button class="settings-button">Settings</button>
-        <button class="logout-button">Logout</button>
-    </div>
+        <div class="sidebar">
+            <img src="avatar.jpg" alt="User Avatar" class="user-avatar">
+            <p class="user-status">Online</p>
+            <button class="profile-button">Profile</button>
+            <button class="settings-button">Settings</button>
+            <button class="logout-button">Logout</button>
+        </div>
     {% endif %}
-</div>
 
 {% endblock %}
