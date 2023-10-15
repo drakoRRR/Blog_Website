@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="post-info">Posted on: {{ post.posted }}</div>
-                        <img src="image.jpg" alt="Sample Image" class="post-image">
+                        <img src="{{ post.image.url }}" alt="Sample Image" class="post-image">
                         <p class="post-text">{{ post.text_post }}</p>
 
                         <form action="{% url 'blog:like_post' post.pk %}" method="POST">
@@ -56,14 +56,15 @@
                             {% endfor %}
                         </div>
 
-                        <textarea class="comment-input" placeholder="Write a comment..."></textarea>
-
-                        <button class="comment-button" type="submit">Comment</button>
+                        <form action="{% url 'blog:feed_page_with_pk' post.id %}" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button class="comment-button" type="submit">Comment</button>
+                        </form>
                     </div>
                 {% endfor %}
             </div>
         </div>
-    </div>
 
     {% if user.is_authenticated %}
         <div class="sidebar">
@@ -74,5 +75,6 @@
             <button class="logout-button">Logout</button>
         </div>
     {% endif %}
+    </div>
 
 {% endblock %}

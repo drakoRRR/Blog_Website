@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django import forms
 
+from blog.models import Comment
 from users.models import User
 
 from .tasks import send_email_verification
@@ -30,3 +31,13 @@ class UserRegisterForm(UserCreationForm):
         user = super(UserRegisterForm, self).save(commit=True)
         send_email_verification.delay(user.id)
         return user
+
+class CommentForm(forms.ModelForm):
+    text = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'comment-input',
+        'placeholder': 'Write a comment...',
+    }))
+
+    class Meta:
+        model = Comment
+        fields = ('text',)
