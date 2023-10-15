@@ -1,0 +1,66 @@
+{% extends 'blog/base_page.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Feed Page</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'users/css/profile_page_style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="avatar"></div>
+        <div class="profile-details">
+            <div class="profile-name">{{ user.username }}</div>
+            <div class="status">Online</div>
+            <button class="settings-button">Settings</button>
+            <button class="friend-button">Add Friend</button>
+            <button class="message-button">Message</button>
+            <a href="#friends" class="quantity-friends">Friends (10)</a>
+            <p class="description">{{ user.description }}</p>
+        </div>
+
+        {% for post in object_list %}
+            <div class="post">
+                <div class="user-info">
+                    <div class="mini-avatar"></div>
+                    <div class="user-nickname"><a href="" class="no-underline">{{ post.author.username }}</a>
+                    </div>
+                </div>
+                <div class="post-info">Posted on: {{ post.posted }}</div>
+                <img src="" alt="Sample Image" class="post-image">
+                <p class="post-text">{{ post.text_post }}</p>
+
+                <form action="{% url 'blog:like_post' post.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button class="like-button" type="submit" value="{{ post.id }}">
+                        <strong>{{ post.total_likes }}</strong> Like
+                    </button>
+                </form>
+
+                <div class="comment-section">
+                    <h3>Comments</h3>
+                    {% for comment in post.comments.all %}
+                        <div class="comment">
+                            <div class="user-info">
+                                <div class="mini-avatar"></div>
+                                <div class="user-nickname"><a href=""
+                                                              class="no-underline">{{ comment.author.username }}</a>
+                                </div>
+                            </div>
+                            <p class="comment-text">{{ comment.text }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <form action="{% url 'users:profile_with_post' user.id post.id %}" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="comment-button" type="submit">Comment</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

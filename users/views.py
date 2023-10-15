@@ -1,10 +1,13 @@
 from django.contrib import auth, messages
 from django.contrib.auth.views import LoginView
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, TemplateView, ListView
 
-from users.forms import UserLoginForm, UserRegisterForm
+from blog.models import Post
+from common.views import CommentFormMixin
+from users.forms import UserLoginForm, UserRegisterForm, CommentForm
 from users.models import User, EmailVerification
 
 
@@ -48,3 +51,16 @@ class EmailVerificationView(TemplateView):
             return super(EmailVerificationView, self).get(request, *args, **kwargs)
         else:
             return redirect('blog:feed')
+
+
+class ProfileView(CommentFormMixin, ListView):
+    model = User
+    template_name = 'users/profile_page.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        context['posts'] = Post.objects.filter(author=self.request.user).all()
+        context['form'] = CommentForm()
+        return context
+
+

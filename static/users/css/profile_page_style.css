@@ -1,0 +1,186 @@
+body {
+    font-family: Arial, sans-serif;
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: black;
+    color: white;
+    padding: 15px; /* Increased padding for a bigger navbar */
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    padding: 10px 20px; /* Adjust the padding for buttons */
+    margin-right: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Add transition for smooth hover effect */
+}
+
+.navbar .right-nav {
+    text-align: right;
+    display: flex;
+}
+
+.navbar .center-nav {
+    display: flex;
+}
+
+.navbar .center-nav a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.navbar .center-nav a:hover {
+    background-color: #0056b3;
+}
+
+.navbar a:hover {
+    background-color: #0056b3;
+}
+
+.search-box {
+    display: flex;
+}
+
+.search-box input[type="text"] {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.search-box button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-box button:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #244EDB;
+    margin-right: 20px;
+}
+
+.profile-details {
+    flex: 1;
+    padding: 20px;
+}
+
+.profile-name {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.status {
+    color: #24AADB;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.settings-button, .friend-button, .message-button {
+    background-color: #24AADB;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.settings-button {
+    background-color: #24DB82; /* Green color for settings button */
+}
+
+.friend-button:hover, .message-button:hover, .settings-button:hover {
+    background-color: #244EDB; /* Darken the background on hover */
+}
+
+.description {
+    margin: 20px 0;
+}
+
+.post {
+    border: 1px solid #24AADB;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.post-info {
+    color: #24AADB;
+    font-size: 12px;
+}
+
+.post-text {
+    margin: 10px 0;
+}
+
+.like-button, .comment-button {
+    background-color: #244EDB;
+    color: white;
+    padding: 10px 20px; /* Adjust the button size */
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Add transition for smooth hover effect */
+}
+
+.like-button:hover, .comment-button:hover {
+    background-color: #24AADB; /* Darken the background on hover */
+}
+
+.post-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px 0; /* Add margin for separation */
+}
+
+.quantity-friends {
+    text-decoration: none;
+    background-color: #24AADB;
+    color: white;
+    padding: 8px 20px; /* Adjust the button size */
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Add transition for smooth hover effect */
+}
+
+.quantity-friends:hover {
+    background-color: #244EDB;
+}
