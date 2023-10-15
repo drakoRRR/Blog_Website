@@ -294,3 +294,11 @@ body {
     border-radius: 5px;
     margin-top: 10px;
 }
+
+  .profile-button {
+    text-decoration: none
+  }
+
+  .profile-button a {
+    color: inherit
+  }
