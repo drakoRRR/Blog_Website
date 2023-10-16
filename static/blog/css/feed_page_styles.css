@@ -304,3 +304,20 @@ body {
   .no-underline {
   text-decoration: none;
 }
+
+.show-more-container {
+    text-align: center; /* Выравнивание по центру */
+    background-color: #333; /* Цвет фона */
+    padding: 10px; /* Отступ вокруг контейнера */
+    border-radius: 5px; /* Закругленные углы */
+}
+
+.show-more-link {
+    color: white; /* Цвет текста белый */
+    text-decoration: none; /* Убрать подчеркивание ссылки */
+    font-weight: bold; /* Жирный шрифт */
+}
+
+.show-more-link:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+}

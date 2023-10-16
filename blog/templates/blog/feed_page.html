@@ -43,7 +43,7 @@
 
                         <div class="comment-section">
                             <h3>Comments</h3>
-                            {% for comment in post.comments.all %}
+                            {% for comment in post.comments.all|slice:":2" %}
                                 <div class="comment">
                                     <div class="user-info">
                                         <div class="mini-avatar"></div>
@@ -54,6 +54,11 @@
                                     <p class="comment-text">{{ comment.text }}</p>
                                 </div>
                             {% endfor %}
+                            {% if post.comments.all|length > 2 %}
+                                <div class="show-more-container">
+                                    <a href="{% url 'blog:post' post.id %}" class="show-more-link">Show more comments</a>
+                                </div>
+                            {% endif %}
                         </div>
 
                         <form action="{% url 'blog:feed_page_with_pk' post.id %}" method="post">
