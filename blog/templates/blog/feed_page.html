@@ -15,12 +15,14 @@
             <div class="feed">
                 <div class="sort-dropdown">
                     <p class="sort-by">Sort by</p>
-                    <select id="sort-options">
-                        <option value="newest">Newest</option>
-                        <option value="oldest">Oldest</option>
-                        <option value="popular">Popular</option>
-                    </select>
-                    <button id="confirm-sort" class="comment-button">Confirm</button>
+                    <form method="get">
+                        <select id="sort-options" name="sort">
+                            <option value="newest">Newest</option>
+                            <option value="oldest">Oldest</option>
+                            <option value="alphabet">Alphabet</option>
+                        </select>
+                        <button id="confirm-sort" class="comment-button" type="submit">Confirm</button>
+                    </form>
                 </div>
 
                 {% for post in object_list %}

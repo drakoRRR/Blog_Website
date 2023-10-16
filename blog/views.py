@@ -5,13 +5,13 @@ from django.views.generic import TemplateView, ListView, CreateView, DetailView,
 
 from blog.forms import CreatePostForm, UpdatePostForm
 from blog.models import Post, Comment
-from common.views import CommentFormMixin
+from common.views import CommentFormMixin, SortMixin
 from users.forms import CommentForm
 from users.models import User
 
 
 # Create your views here.
-class FeedView(CommentFormMixin, ListView):
+class FeedView(SortMixin, CommentFormMixin, ListView):
     model = Post
     template_name = 'blog/feed_page.html'
 
@@ -71,8 +71,11 @@ class SearchView(CommentFormMixin, ListView):
     template_name = 'blog/search_page.html'
 
     def get_queryset(self):
+        queryset = super().get_queryset()
         query = self.request.GET.get('q')
-        return Post.objects.filter(text_post__icontains=query).order_by('-posted')
+        if query:
+            queryset = queryset.filter(text_post__icontains=query)
+        return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(SearchView, self).get_context_data(**kwargs)
@@ -80,6 +83,7 @@ class SearchView(CommentFormMixin, ListView):
         query = self.request.GET.get('q')
         context['users'] = User.objects.filter(username__icontains=query)
         context['form'] = CommentForm()
+        context['search'] = query
         return context
 
 def like_view(request, post_id):

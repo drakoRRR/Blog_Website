@@ -13,18 +13,20 @@
 <div class="main-container">
 <div class="container">
     <div class="search-container">
-        <p class="search-text">Your search for: <span class="search-term">search</span></p>
+        <p class="search-text">Your search for: <span class="search-term">{{ search }}</span></p>
     </div>
     <div class="feed">
-        <div class="sort-dropdown">
-            <p class="sort-by">Sort by</p>
-            <select id="sort-options">
-                <option value="newest">Newest</option>
-                <option value="oldest">Oldest</option>
-                <option value="popular">Popular</option>
-            </select>
-            <button id="confirm-sort" class="comment-button">Confirm</button>
-        </div>
+{#        <div class="sort-dropdown">#}
+{#            <p class="sort-by">Sort by</p>#}
+{#            <form method="get">#}
+{#                <select id="sort-options" name="sort">#}
+{#                    <option value="newest">Newest</option>#}
+{#                    <option value="oldest">Oldest</option>#}
+{#                    <option value="alphabet">Alphabet</option>#}
+{#                </select>#}
+{#                <button id="confirm-sort" class="comment-button" type="submit">Confirm</button>#}
+{#            </form>#}
+{#        </div>#}
 
         <h1>Profiles:</h1>
         {% if not users %}

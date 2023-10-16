@@ -27,3 +27,20 @@ class CommentFormMixin:
         return self.get(request, *args, **kwargs)
 
 
+class SortMixin:
+    sort_field_map = {
+        'newest': '-posted',
+        'oldest': 'posted',
+        'alphabet': 'text_post',
+    }
+
+    def get_sort_field(self):
+        sort_option = self.request.GET.get('sort')
+        return self.sort_field_map.get(sort_option)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        sort_field = self.get_sort_field()
+        if sort_field:
+            queryset = queryset.order_by(sort_field)
+        return queryset
