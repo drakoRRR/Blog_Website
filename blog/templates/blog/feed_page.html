@@ -31,7 +31,10 @@
                             </div>
                         </div>
                         <div class="post-info">Posted on: {{ post.posted }}</div>
-                        <a href="{% url 'blog:post' post.id %}"><img src="{{ post.image.url }}" alt="Sample Image" class="post-image"></a>
+                        {% if post.author == request.user %}
+                            <a href="{% url 'blog:set_post' post.id %}" class="edit-post-link">Change Post</a>
+                        {% endif %}
+                        <a href="{% url 'blog:post' post.id %}"><img src="{% if post.image %}{{ post.image.url }}{% else %}#{% endif %}" alt="Sample Image" class="post-image"></a>
                         <p class="post-text">{{ post.text_post }}</p>
 
                         <form action="{% url 'blog:like_post' post.pk %}" method="POST">
@@ -52,7 +55,7 @@
                                         </div>
                                     </div>
                                     <p class="comment-text">{{ comment.text }}</p>
-                                    {% if comment.post.author == request.user %}
+                                    {% if comment.post.author == request.user or comment.author == request.user %}
                                         <form method="POST">
                                             {% csrf_token %}
                                             <input type="hidden" name="action" value="delete">

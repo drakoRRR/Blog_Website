@@ -342,3 +342,20 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.edit-post-link {
+    display: inline-block;
+    background-color: #3498db; /* Цвет фона кнопки */
+    color: white; /* Цвет текста */
+    padding: 5px 10px; /* Отступы внутри кнопки */
+    border-radius: 5px; /* Закругленные углы */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-weight: bold; /* Жирный шрифт */
+    margin-top: 10px; /* Отступ сверху */
+    transition: background-color 0.3s ease; /* Анимация изменения цвета фона при наведении */
+}
+
+.edit-post-link:hover {
+    background-color: #277cbf; /* Новый цвет фона при наведении */
+}
+
+

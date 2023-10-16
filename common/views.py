@@ -21,7 +21,7 @@ class CommentFormMixin:
 
     def delete_comment(self, request, *args, **kwargs):
         comment = get_object_or_404(Comment, pk=request.POST.get('comment_id'))
-        if comment.post.author == request.user:
+        if comment.post.author == request.user or comment.author == request.user:
             comment.delete()
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         return self.get(request, *args, **kwargs)

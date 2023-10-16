@@ -1,9 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, CreateView, DetailView
+from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView
 
-from blog.forms import CreatePostForm
+from blog.forms import CreatePostForm, UpdatePostForm
 from blog.models import Post, Comment
 from common.views import CommentFormMixin
 from users.forms import CommentForm
@@ -45,6 +45,24 @@ class ShowPostView(CommentFormMixin, DetailView):
         context = super(ShowPostView, self).get_context_data(**kwargs)
         context['form'] = CommentForm()
         return context
+
+
+class UpdatePostView(UpdateView):
+    model = Post
+    form_class = UpdatePostForm
+    template_name = 'blog/set_post_page.html'
+    success_url = reverse_lazy('blog:feed')
+
+    def post(self, request, *args, **kwargs):
+        post = self.get_object()
+        form = UpdatePostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post.text_post = self.request.POST['description']
+            if self.request.POST['image']:
+                post.image = self.request.POST['image']
+            form.save()
+            return redirect('blog:feed')
+        return self.get(request, *args, **kwargs)
 
 
 def like_view(request, post_id):
