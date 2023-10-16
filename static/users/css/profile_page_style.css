@@ -251,3 +251,40 @@ body {
     border-radius: 50%;
     object-fit: cover;
 }
+
+.show-more-container {
+    text-align: center; /* Выравнивание по центру */
+    background-color: #333; /* Цвет фона */
+    padding: 10px; /* Отступ вокруг контейнера */
+    border-radius: 5px; /* Закругленные углы */
+}
+
+.show-more-link {
+    color: white; /* Цвет текста белый */
+    text-decoration: none; /* Убрать подчеркивание ссылки */
+    font-weight: bold; /* Жирный шрифт */
+}
+
+.show-more-link:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+.delete-button {
+    background-color: #ff5733; /* Цвет фона */
+    color: white; /* Цвет текста */
+    border: none; /* Убираем границу */
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    border-radius: 5px; /* Закругляем углы */
+    cursor: pointer; /* Курсор при наведении */
+    font-weight: bold; /* Жирный шрифт */
+    transition: background-color 0.3s ease; /* Анимация изменения цвета фона при наведении */
+}
+
+.delete-button:hover {
+    background-color: #ff3317; /* Новый цвет фона при наведении */
+}
+
+/* Если вы хотите добавить немного тени */
+.delete-button {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

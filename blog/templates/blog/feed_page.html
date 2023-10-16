@@ -52,6 +52,14 @@
                                         </div>
                                     </div>
                                     <p class="comment-text">{{ comment.text }}</p>
+                                    {% if comment.post.author == request.user %}
+                                        <form method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="action" value="delete">
+                                            <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                                            <button type="submit" class="delete-button">Delete</button>
+                                        </form>
+                                    {% endif %}
                                 </div>
                             {% endfor %}
                             {% if post.comments.all|length > 2 %}

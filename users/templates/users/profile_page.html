@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="post-info">Posted on: {{ post.posted }}</div>
-                <img src="" alt="Sample Image" class="post-image">
+                <img src="{% if post.image %}{{ post.image.url }}{% else %}#{% endif %}" alt="Sample Image" class="post-image">
                 <p class="post-text">{{ post.text_post }}</p>
 
                 <form action="{% url 'blog:like_post' post.pk %}" method="POST">
@@ -42,7 +42,7 @@
 
                 <div class="comment-section">
                     <h3>Comments</h3>
-                    {% for comment in post.comments.all %}
+                    {% for comment in post.comments.all|slice:":2" %}
                         <div class="comment">
                             <div class="user-info">
                                 <div class="mini-avatar"></div>
@@ -51,8 +51,21 @@
                                 </div>
                             </div>
                             <p class="comment-text">{{ comment.text }}</p>
+                            {% if comment.post.author == request.user %}
+                                        <form method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="action" value="delete">
+                                            <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                                            <button type="submit" class="delete-button">Delete</button>
+                                        </form>
+                            {% endif %}
                         </div>
                     {% endfor %}
+                    {% if post.comments.all|length > 2 %}
+                        <div class="show-more-container">
+                            <a href="{% url 'blog:post' post.id %}" class="show-more-link">Show more comments</a>
+                        </div>
+                    {% endif %}
                 </div>
 
                 <form action="{% url 'users:profile_with_post' user.id post.id %}" method="post">
