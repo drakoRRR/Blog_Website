@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.urls import path
-from .views import FeedView, like_view, CreatePostView, ShowPostView, UpdatePostView, SearchView
+from .views import FeedView, like_view, CreatePostView, ShowPostView, UpdatePostView, SearchView, DeletePostView
 
 app_name = 'blog'
 
@@ -12,4 +12,5 @@ urlpatterns = [
     path('post/detail/<int:pk>', ShowPostView.as_view(), name='post'),
     path('post/change/<int:pk>', UpdatePostView.as_view(), name='set_post'),
     path('post/search/', SearchView.as_view(), name='search'),
+    path('post/delete/', DeletePostView.as_view(), name='delete_post')
 ]

@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from blog.forms import CreatePostForm, UpdatePostForm
 from blog.models import Post, Comment
@@ -34,6 +34,19 @@ class CreatePostView(CreateView):
             blog_post.author = request.user
             blog_post.save()
             return redirect('blog:feed')
+        return self.get(request, *args, **kwargs)
+
+
+class DeletePostView(DeleteView):
+    model = Post
+    success_url = reverse_lazy('blog:feed')
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('action') == 'delete':
+            post = get_object_or_404(Post, pk=request.POST.get('post_id'))
+            if post.author == request.user:
+                post.delete()
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         return self.get(request, *args, **kwargs)
 
 
