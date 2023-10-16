@@ -15,8 +15,8 @@
             <div class="feed">
                     <div class="post">
                         <div class="user-info">
-                            <div class="mini-avatar"></div>
-                            <div class="user-nickname"><a href="" class="no-underline">{{ post.author.username }}</a>
+                            <img src="{{ post.author.image.url }}" alt="" class="mini-avatar-img">
+                            <div class="user-nickname"><a href="{% url 'users:profile' post.author.id %}" class="no-underline">{{ post.author.username }}</a>
                             </div>
                         </div>
                         <div class="post-info">Posted on: {{ post.posted }}</div>
@@ -35,13 +35,13 @@
                             {% for comment in post.comments.all %}
                                 <div class="comment">
                                     <div class="user-info">
-                                        <div class="mini-avatar"></div>
-                                        <div class="user-nickname"><a href=""
+                                        <img src="{{ comment.author.image.url }}" alt="" class="mini-avatar">
+                                        <div class="user-nickname"><a href="{% url 'users:profile' post.author.id %}"
                                                                       class="no-underline">{{ comment.author.username }}</a>
                                         </div>
                                     </div>
                                     <p class="comment-text">{{ comment.text }}</p>
-                                    {% if comment.post.author == request.user %}
+                                    {% if comment.author == request.user %}
                                         <form method="POST">
                                             {% csrf_token %}
                                             <input type="hidden" name="action" value="delete">

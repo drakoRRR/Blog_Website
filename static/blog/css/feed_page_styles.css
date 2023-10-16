@@ -295,8 +295,6 @@ body {
     margin-top: 10px;
 }
 
-
-
 .profile-button a {
     color: inherit
 }
@@ -358,4 +356,11 @@ body {
     background-color: #277cbf; /* Новый цвет фона при наведении */
 }
 
-
+.mini-avatar-img {
+    width: 30px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-bottom: 7px;
+}

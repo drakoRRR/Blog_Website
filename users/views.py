@@ -59,8 +59,13 @@ class ProfileView(CommentFormMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
-        context['posts'] = Post.objects.filter(author=self.request.user).all()
+
+        user_id = self.kwargs['user_id']
+        user = User.objects.get(pk=user_id)
+        context['posts'] = Post.objects.filter(author=user).all()
+        context['user'] = user
         context['form'] = CommentForm()
+
         return context
 
 
