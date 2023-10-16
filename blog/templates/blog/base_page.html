@@ -23,8 +23,11 @@
         <a href="{% url 'blog:feed' %}">Feed</a>
     </div>
     <div class="search-box">
-        <input type="text" placeholder="Search">
-        <button type="submit">Search</button>
+        <form action="{% url 'blog:search' %}" method="get">
+            {% csrf_token %}
+            <input type="text" name="q" placeholder="Search">
+            <button type="submit">Search</button>
+        </form>
     </div>
 </div>
 

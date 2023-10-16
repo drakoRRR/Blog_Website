@@ -26,7 +26,7 @@
                 {% for post in object_list %}
                     <div class="post">
                         <div class="user-info">
-                            <div class="mini-avatar"></div>
+{#                            <img src="{% if user.image %}{{ user.image.url }}{% else %}#{% endif %}" alt="User Avatar" class="mini-avatar">#}
                             <div class="user-nickname"><a href="" class="no-underline">{{ post.author.username }}</a>
                             </div>
                         </div>

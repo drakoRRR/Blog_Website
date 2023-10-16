@@ -7,6 +7,7 @@ from blog.forms import CreatePostForm, UpdatePostForm
 from blog.models import Post, Comment
 from common.views import CommentFormMixin
 from users.forms import CommentForm
+from users.models import User
 
 
 # Create your views here.
@@ -64,6 +65,22 @@ class UpdatePostView(UpdateView):
             return redirect('blog:feed')
         return self.get(request, *args, **kwargs)
 
+
+class SearchView(CommentFormMixin, ListView):
+    model = Post
+    template_name = 'blog/search_page.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Post.objects.filter(text_post__icontains=query).order_by('-posted')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(SearchView, self).get_context_data(**kwargs)
+
+        query = self.request.GET.get('q')
+        context['users'] = User.objects.filter(username__icontains=query)
+        context['form'] = CommentForm()
+        return context
 
 def like_view(request, post_id):
     post = get_object_or_404(Post, id=post_id)
