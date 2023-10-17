@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    <title>Feed Page</title>
+    <title>Profile Page</title>
 {% endblock %}
 
 {% block css %}
@@ -14,12 +14,13 @@
         <div class="avatar"><img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}" alt="User Avatar" class="user-avatar"></div>
         <div class="profile-details">
             <div class="profile-name">{{ user.username }}</div>
-            <div class="status">Online</div>
             {% if user.is_authenticated and user.id == request.user.id %}
                 <button class="settings-button"><a class="no-underline" href="{% url 'users:settings' user.id %}">Settings</a></button>
             {% endif %}
             {% if not user.id == request.user.id %}
-                <button class="friend-button"><a class="no-underline" href="{% url 'users:add_friend' user.id %}">Add Friend</a></button>
+                {% if not user in request.user.friends.all %}
+                    <button class="friend-button"><a class="no-underline" href="{% url 'users:add_friend' user.id %}">Add Friend</a></button>
+                {% endif %}
                 <button class="message-button">Message</button>
             {% endif %}
             <a href="{% url 'users:friends' user.id %}" class="quantity-friends">Friends ({{ user.count_friends }})</a>
@@ -34,7 +35,7 @@
                     </div>
                 </div>
                 <div class="post-info">Posted on: {{ post.posted }}</div>
-                <img src="{% if post.image %}{{ post.image.url }}{% else %}#{% endif %}" alt="Sample Image" class="post-image">
+                <a href="{% url 'blog:post' post.id %}"><img src="{% if post.image %}{{ post.image.url }}{% else %}#{% endif %}" alt="Sample Image" class="post-image"></a>
                 <p class="post-text">{{ post.text_post }}</p>
 
                 <form action="{% url 'blog:like_post' post.pk %}" method="POST">

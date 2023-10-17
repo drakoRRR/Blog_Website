@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    <title>Feed Page</title>
+    <title>Friends Page</title>
 {% endblock %}
 
 {% block css %}
@@ -14,20 +14,31 @@
     <div class="container">
         <div class="feed">
             <h1>Requests to add friend</h1>
-            {% for request in friend_requests %}
-                <div class="profile">
-                    <div class="user-info">
-                        <img src="{% if request.from_user.image %}{{ request.from_user.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}" alt="User Avatar"
-                             class="mini-avatar-img">
-                        <div class="user-nickname"><a href="" class="no-underline">{{ request.from_user.username }}</a></div>
+            {% if friend_requests %}
+                {% for request in friend_requests %}
+                    <div class="profile">
+                        <div class="user-info">
+                            <img src="
+                                    {% if request.from_user.image %}{{ request.from_user.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}"
+                                 alt="User Avatar"
+                                 class="mini-avatar-img">
+                            <div class="user-nickname"><a href=""
+                                                          class="no-underline">{{ request.from_user.username }}</a>
+                            </div>
+                        </div>
+                        <p class="post-text">{{ request.from_user.description|slice:"85"|add:"..." }}</p>
+                        <div class="friend-request-buttons">
+                            <button class="accept-button"><a class="no-underline"
+                                                             href="{% url 'users:accept_friend' request.id %}">Accept</a>
+                            </button>
+                            <button class="reject-button">Reject</button>
+                        </div>
                     </div>
-                    <p class="post-text">{{ request.from_user.description|slice:"85"|add:"..." }}</p>
-                    <div class="friend-request-buttons">
-                        <button class="accept-button"><a class="no-underline" href="{% url 'users:accept_friend' request.id %}">Accept</a></button>
-                        <button class="reject-button">Reject</button>
-                    </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                <h2 style="text-align: center">There no requests yet</h2>
+            {% endif %}
+
             <h1>Friends of UserName:</h1>
 
             {% for user in friends %}
@@ -46,7 +57,7 @@
     {% if user.is_authenticated %}
         <div class="sidebar">
             <img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}" alt="User Avatar" class="user-avatar">
-            <p class="user-status">Online</p>
+            <p class="user-status">{{ user.username }}</p>
             <button class="profile-button"><a class="no-underline" href="{% url 'users:profile' user.id %}">Profile</a></button>
             <button class="settings-button"><a class="no-underline" href="{% url 'users:settings' user.id %}">Settings</a></button>
             <button class="logout-button"><a class="no-underline" href="{% url 'users:logout' %}">Logout</a></button>

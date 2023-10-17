@@ -64,8 +64,8 @@
 
     {% if user.is_authenticated %}
         <div class="sidebar">
-            <img src="{% if user.image %}{{ user.image.url }}{% else %}#{% endif %}" alt="User Avatar" class="user-avatar">
-            <p class="user-status">Online</p>
+            <img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}" alt="User Avatar" class="user-avatar">
+            <p class="user-status">{{ user.username }}</p>
             <button class="profile-button"><a class="no-underline" href="{% url 'users:profile' user.id %}">Profile</a></button>
             <button class="settings-button"><a class="no-underline" href="{% url 'users:settings' user.id %}">Settings</a></button>
             <button class="logout-button"><a class="no-underline" href="{% url 'users:logout' %}">Logout</a></button>
