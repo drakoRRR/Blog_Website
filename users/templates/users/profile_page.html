@@ -11,16 +11,18 @@
 
 {% block content %}
     <div class="container">
-        <div class="avatar"><img src="{% if user.image %}{{ user.image.url }}{% else %}#{% endif %}" alt="User Avatar" class="user-avatar"></div>
+        <div class="avatar"><img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}" alt="User Avatar" class="user-avatar"></div>
         <div class="profile-details">
             <div class="profile-name">{{ user.username }}</div>
             <div class="status">Online</div>
             {% if user.is_authenticated and user.id == request.user.id %}
                 <button class="settings-button"><a class="no-underline" href="{% url 'users:settings' user.id %}">Settings</a></button>
             {% endif %}
-            <button class="friend-button">Add Friend</button>
-            <button class="message-button">Message</button>
-            <a href="#friends" class="quantity-friends">Friends (10)</a>
+            {% if not user.id == request.user.id %}
+                <button class="friend-button"><a class="no-underline" href="{% url 'users:add_friend' user.id %}">Add Friend</a></button>
+                <button class="message-button">Message</button>
+            {% endif %}
+            <a href="{% url 'users:friends' user.id %}" class="quantity-friends">Friends ({{ user.count_friends }})</a>
             <p class="description">{{ user.description }}</p>
         </div>
 

@@ -40,8 +40,8 @@
                         <div class="user-nickname"><a href="" class="no-underline">{{ user.username }}</a></div>
                     </div>
                     <p class="post-text">{{ user.description|slice:"85"|add:"..." }}</p>
-                    <button class="comment-button">Profile</button>
-                    <button class="comment-button">Follow</button>
+                    <button class="comment-button"><a href="{% url 'users:profile' user.id %}" class="no-underline">Profile</a></button>
+                    <button class="comment-button"><a href="{% url 'users:add_friend' user.id %}" class="no-underline">Add Friend</a></button>
                 </div>
             {% endfor %}
         {% endif %}

@@ -1,14 +1,15 @@
 from django.contrib import auth, messages
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import CreateView, TemplateView, ListView, UpdateView
 
 from blog.models import Post
 from common.views import CommentFormMixin
 from users.forms import UserLoginForm, UserRegisterForm, CommentForm, ProfileForm
-from users.models import User, EmailVerification
+from users.models import User, EmailVerification, FriendRequest
 
 
 # Create your views here.
@@ -80,4 +81,40 @@ class SettingsView(UpdateView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+class FriendsView(ListView):
+    model = User
+    template_name = 'users/friends_page.html'
+    context_object_name = 'friends'
+
+    def get_queryset(self):
+        user_id = self.kwargs['pk']
+        user = get_object_or_404(User, id=user_id)
+        friends = user.friends.all()
+        return friends
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(FriendsView, self).get_context_data(**kwargs)
+        context['friend_requests'] = FriendRequest.objects.filter(to_user=self.request.user)
+        return context
+
+
+def send_request(request, id):
+    from_user = request.user
+    to_user = User.objects.get(id=id)
+    friend_request = FriendRequest.objects.get_or_create(from_user=from_user, to_user=to_user)
+
+    return redirect('blog:feed')
+
+def accept_request(request, id):
+    friend_request = FriendRequest.objects.get(id=id)
+    user1 = request.user
+    user2 = friend_request.from_user
+    user1.friends.add(user2)
+    user2.friends.add(user1)
+    friend_request.delete()
+
+    return redirect('blog:feed')
+
 

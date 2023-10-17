@@ -13,6 +13,15 @@ class User(AbstractUser):
     image = models.ImageField(upload_to='users_images', null=True, blank=True)
     description = models.TextField(default='null text')
     is_verified_email = models.BooleanField(default=False)
+    friends = models.ManyToManyField('User', blank=True)
+
+    def count_friends(self):
+        return self.friends.count()
+
+
+class FriendRequest(models.Model):
+    from_user = models.ForeignKey(User, related_name='from_user', on_delete=models.CASCADE)
+    to_user = models.ForeignKey(User, related_name='to_user', on_delete=models.CASCADE)
 
 
 class EmailVerification(models.Model):

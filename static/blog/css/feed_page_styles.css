@@ -364,3 +364,27 @@ body {
     margin-right: 10px;
     margin-bottom: 7px;
 }
+
+.friend-request-buttons {
+    display: flex;
+    gap: 10px; /* Adjust the gap between buttons as needed */
+}
+
+.accept-button,
+.reject-button {
+    padding: 8px 12px;
+    background-color: #4CAF50; /* Green color for "Accept" */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reject-button {
+    background-color: #FF5733; /* Red color for "Reject" */
+}
+
+.accept-button:hover,
+.reject-button:hover {
+    opacity: 0.8; /* Reduce opacity on hover */
+}
