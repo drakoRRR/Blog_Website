@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls', namespace='blog')),
     path('users/', include('users.urls', namespace='users')),
+    path('chat/', include('chat.urls', namespace='chat')),
 
     path('password_reset/',
          auth_views.PasswordResetView.as_view(template_name='users/password_reset_form.html'),

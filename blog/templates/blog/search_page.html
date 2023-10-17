@@ -47,7 +47,7 @@
                         <div class="user-info">
                             <img src="
                                     {% if post.author.image %}{{ post.author.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}"
-                                 alt="" class="mini-avatar-img">
+                                 alt="" class="mini-avatar">
                             <div class="user-nickname"><a href="{% url 'users:profile' post.author.id %}"
                                                           class="no-underline">{{ post.author.username }}</a>
                             </div>

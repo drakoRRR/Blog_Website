@@ -64,7 +64,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
 
+    'chat.apps.ChatConfig',
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
 ]
@@ -98,6 +100,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'blog_app.wsgi.application'
+ASGI_APPLICATION = 'blog_app.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 INTERNAL_IPS = [
     '127.0.0.1',
