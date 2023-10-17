@@ -54,7 +54,7 @@ body {
 }
 
 .search-box input[type="text"] {
-    padding: 5px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     margin-right: 10px;
@@ -65,7 +65,7 @@ body {
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 10px 25px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -396,4 +396,33 @@ body {
 
 .edit-post-link:hover {
     background-color: #277cbf; /* Новый цвет фона при наведении */
+}
+
+.profile, .post {
+    border: 1px solid #24AADB;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.mini-avatar {
+    width: 30px;
+    height: 30px;
+    background-color: #24AADB; /* Replace with actual background image or color for the avatar */
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-nickname {
+    font-weight: bold;
+}
+
+.post-info {
+    color: #24AADB;
+    font-size: 12px;
 }

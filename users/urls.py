@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path
 from .views import LoginUserView, RegistrationView, EmailVerificationView, ProfileView, SettingsView, send_request, \
-    accept_request, FriendsView
+    accept_request, FriendsView, reject_request, delete_friend
 
 app_name = 'users'
 
@@ -18,6 +18,8 @@ urlpatterns = [
     path('profile/settings/<int:pk>', SettingsView.as_view(), name='settings'),
 
     path('add-friend/<int:id>/', send_request, name='add_friend'),
+    path('delete-friend/<int:id>/', delete_friend, name='delete_friend'),
     path('accept/<int:id>/', accept_request, name='accept_friend'),
+    path('reject/<int:id>/', reject_request, name='reject_friend'),
     path('friends/<int:pk>', FriendsView.as_view(), name='friends'),
 ]

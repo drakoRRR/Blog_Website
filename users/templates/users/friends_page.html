@@ -31,16 +31,19 @@
                             <button class="accept-button"><a class="no-underline"
                                                              href="{% url 'users:accept_friend' request.id %}">Accept</a>
                             </button>
-                            <button class="reject-button">Reject</button>
+                            <button class="reject-button"><a class="no-underline"
+                                                             href="{% url 'users:reject_friend' request.id %}">Reject</a>
+                            </button>
                         </div>
                     </div>
                 {% endfor %}
             {% else %}
-                <h2 style="text-align: center">There no requests yet</h2>
+                <h2 style="text-align: center">There is no requests yet</h2>
             {% endif %}
 
             <h1>Friends of UserName:</h1>
 
+            {% if friends %}
             {% for user in friends %}
                 <div class="profile">
                     <div class="user-info">
@@ -50,8 +53,14 @@
                     </div>
                     <p class="post-text">{{ user.description|slice:"85"|add:"..." }}</p>
                     <button class="comment-button"><a class="no-underline" href="{% url 'users:profile' user.id %}">Profile</a></button>
+                    {% if request.user in user.friends.all  %}
+                        <button class="reject-button"><a class="no-underline" href="{% url 'users:delete_friend' user.id %}">Delete From Friends</a></button>
+                    {% endif %}
                 </div>
             {% endfor %}
+            {% else %}
+                <h2 style="text-align: center">There is no friends yet</h2>
+            {% endif %}
         </div>
     </div>
     {% if user.is_authenticated %}

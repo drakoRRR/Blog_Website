@@ -107,12 +107,31 @@ def send_request(request, id):
 
     return redirect('blog:feed')
 
+
+def delete_friend(request, id):
+    friend_to_remove = get_object_or_404(User, id=id)
+    current_user = request.user
+
+    # Check if the friend_to_remove is actually a friend of the current_user
+    if friend_to_remove in current_user.friends.all():
+        current_user.friends.remove(friend_to_remove)
+        friend_to_remove.friends.remove(current_user)
+
+    return redirect('blog:feed')
+
+
 def accept_request(request, id):
     friend_request = FriendRequest.objects.get(id=id)
     user1 = request.user
     user2 = friend_request.from_user
     user1.friends.add(user2)
     user2.friends.add(user1)
+    friend_request.delete()
+
+    return redirect('blog:feed')
+
+def reject_request(request, id):
+    friend_request = FriendRequest.objects.get(id=id)
     friend_request.delete()
 
     return redirect('blog:feed')
