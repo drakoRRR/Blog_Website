@@ -153,3 +153,7 @@ body {
     transition: background-color 0.3s;
 }
 
+.chat-messages {
+    height: 400px;
+    overflow-y: auto;
+}

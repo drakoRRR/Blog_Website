@@ -21,7 +21,7 @@
                 {% if not user in request.user.friends.all %}
                     <button class="friend-button"><a class="no-underline" href="{% url 'users:add_friend' user.id %}">Add Friend</a></button>
                 {% endif %}
-                <button class="message-button">Message</button>
+                <button class="message-button"><a class="no-underline" href="{% url 'chat:chat'  %}">Message</a></button>
             {% endif %}
             <a href="{% url 'users:friends' user.id %}" class="quantity-friends">Friends ({{ user.count_friends }})</a>
             <p class="description">{{ user.description }}</p>

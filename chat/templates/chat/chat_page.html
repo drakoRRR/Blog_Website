@@ -12,31 +12,23 @@
 {% block content %}
 <div class="container">
     <div class="user-profile">
-        <h2 class="username">John Doe</h2>
-        <p class="status">Online</p>
+        <h2 class="username">Chat</h2>
     </div>
     <div class="chat-box">
         <div class="chat-messages" id="chat-messages">
-            <div class="message received">
-                <div class="message-content">
-                    Hello, how are you?
+            {% for message in messages %}
+                <div class="message">
+                    <div class="message-content">
+                        <span class="nickname">{{ message.user.username }}</span>: {{ message.content }}
+                    </div>
                 </div>
-            </div>
-            <div class="message sent">
-                <div class="message-content">
-                    Hi, I'm good. How about you?
-                </div>
-            </div>
-            <div class="message received">
-                <div class="message-content">
-                    I'm great, thanks for asking!
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <div class="message-input">
             <form action="" method="post">
+                {% csrf_token %}
                 <input type="text" placeholder="Type your message" id="chat-message">
-            <button id="chat-message-submit">Send</button>
+                <button id="chat-message-submit">Send</button>
             </form>
         </div>
     </div>
@@ -64,10 +56,14 @@
             const data = JSON.parse(e.data);
 
             if (data.message) {
-                let html = '<div class="message received">';
-                    html += '<div class="message-content">' + data.message + '</div>';
+                let html = '<div class="message">';
+                html += '<div class="message-content">';
+                html += '<span class="nickname">' + data.username
+                html += '</span>: ' + data.message + '</div>' + '</div>';
 
-                 document.querySelector('#chat-messages').innerHTML += html;
+                document.querySelector('#chat-messages').innerHTML += html;
+
+                scrollToBottom();
             } else {
                 alert('The message was empty')
             }
@@ -80,6 +76,8 @@
         //
 
         document.querySelector('#chat-message-submit').onclick = function (e) {
+            e.preventDefault();
+
             const messageInputDom = document.querySelector('#chat-message');
             const message = messageInputDom.value
 
@@ -90,7 +88,18 @@
             }));
 
             messageInputDom.value = '';
+
+            return false;
         }
+
+        //
+
+        function scrollToBottom() {
+            const objDiv = document.querySelector('#chat-messages');
+            objDiv.scrollTop = objDiv.scrollHeight;
+        }
+
+        scrollToBottom();
     </script>
 
 {% endblock %}
