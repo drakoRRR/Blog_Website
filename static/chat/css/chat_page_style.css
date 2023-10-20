@@ -54,7 +54,7 @@ body {
 }
 
 .search-box input[type="text"] {
-    padding: 5px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     margin-right: 10px;
@@ -65,7 +65,7 @@ body {
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 10px 25px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -85,18 +85,23 @@ body {
 
 .user-profile {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-size: cover;
 }
 
 .username {
     font-size: 24px;
     font-weight: bold;
-}
-
-.status {
-    color: green;
 }
 
 .chat-box {
@@ -113,9 +118,15 @@ body {
 }
 
 .message {
-    margin-bottom: 15px;
+    background-color: #f2f2f2;
     padding: 10px;
-    border-radius: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.message-content {
+    font-size: 14px;
+    color: #333;
 }
 
 .message.received {
@@ -132,11 +143,15 @@ body {
 .message-input {
     display: flex;
     justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
     align-items: center;
 }
 
 .message-input input {
-    flex-grow: 1;
+    width: 630px;
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #ccc;
@@ -153,7 +168,12 @@ body {
     transition: background-color 0.3s;
 }
 
+.message-input button:hover {
+    background-color: #0056b3;
+}
+
 .chat-messages {
     height: 400px;
     overflow-y: auto;
 }
+

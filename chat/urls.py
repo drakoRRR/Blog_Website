@@ -6,5 +6,5 @@ from chat.views import RoomDetailView
 app_name = 'chat'
 
 urlpatterns = [
-    path('<slug:slug>/', login_required(RoomDetailView.as_view()), name='chat')
+    path('<str:room_name>/', login_required(RoomDetailView.as_view()), name='chat'),
 ]

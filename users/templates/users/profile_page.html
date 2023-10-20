@@ -1,5 +1,6 @@
 {% extends 'blog/base_page.html' %}
 {% load static %}
+{% load concat %}
 
 {% block title %}
     <title>Profile Page</title>
@@ -21,7 +22,11 @@
                 {% if not user in request.user.friends.all %}
                     <button class="friend-button"><a class="no-underline" href="{% url 'users:add_friend' user.id %}">Add Friend</a></button>
                 {% endif %}
-                <button class="message-button"><a class="no-underline" href="{% url 'chat:chat'  %}">Message</a></button>
+                {% if request.user.id > user.id %}
+                    <button class="message-button"><a class="no-underline" href="{% url 'chat:chat' request.user.id|stringformat:"s"|add:'-'|concat:user.id|stringformat:"s" %}">Message</a></button>
+                {% else %}
+                    <button class="message-button"><a class="no-underline" href="{% url 'chat:chat' user.id|stringformat:"s"|add:'-'|concat:request.user.id|stringformat:"s" %}">Message</a></button>
+                {% endif %}
             {% endif %}
             <a href="{% url 'users:friends' user.id %}" class="quantity-friends">Friends ({{ user.count_friends }})</a>
             <p class="description">{{ user.description }}</p>

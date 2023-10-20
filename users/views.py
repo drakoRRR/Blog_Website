@@ -7,6 +7,7 @@ from django.views import View
 from django.views.generic import CreateView, TemplateView, ListView, UpdateView
 
 from blog.models import Post
+from chat.models import Room
 from common.views import CommentFormMixin
 from users.forms import UserLoginForm, UserRegisterForm, CommentForm, ProfileForm
 from users.models import User, EmailVerification, FriendRequest
