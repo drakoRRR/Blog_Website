@@ -12,8 +12,13 @@
 {% block content %}
 <div class="container">
 <div class="user-profile">
-    <div class="user-avatar"><img src="{% if user2.image %}{{ user2.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}" alt="User Avatar" class="user-avatar"></div>
-    <h2 class="username">{{ user2.username }}</h2>
+    {% if request.user == user1 %}
+        <div class="user-avatar"><img src="{% if user2.image %}{{ user2.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}" alt="User Avatar" class="user-avatar"></div>
+        <h2 class="username">{{ user2.username }}</h2>
+    {% else %}
+        <div class="user-avatar"><img src="{% if user1.image %}{{ user1.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}" alt="User Avatar" class="user-avatar"></div>
+        <h2 class="username">{{ user1.username }}</h2>
+    {% endif %}
 </div>
     <div class="chat-box">
         <div class="chat-messages" id="chat-messages">

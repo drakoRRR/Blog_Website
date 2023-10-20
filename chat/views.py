@@ -20,7 +20,12 @@ class RoomDetailView(DetailView):
         room = Room.objects.filter(user1=user1, user2=user2).first()
 
         context['messages'] = Message.objects.filter(room=room)[0:25]
-        context['user2'] = user2
+        if user1.id > user2.id:
+            context['user1'] = user1
+            context['user2'] = user2
+        else:
+            context['user1'] = user2
+            context['user2'] = user1
 
         return context
 
