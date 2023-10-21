@@ -1,0 +1,51 @@
+{% extends 'blog/base_page.html' %}
+{% load static %}
+{% load concat %}
+
+{% block title %}
+    <title>Chats Page</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'users/css/messages_page_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% for user_message in object_list %}
+        <a class="no-link-style" href="{% url 'chat:chat' user_message.user1.id|stringformat:"s"|add:'-'|concat:user_message.user2.id|stringformat:"s" %}">
+            <div class="user-chat">
+                <div class="user-avatar">
+                    <img src="
+                        {% if request.user == user_message.user1 %}
+                            {% if user_message.user2.image %}
+                                {{ user_message.user2.image.url }}
+                            {% else %}
+                                {% static 'users/images/avatar.png' %}
+                            {% endif %}
+                        {% else %}
+                            {% if user_message.user1.image %}
+                                {{ user_message.user1.image.url }}
+                            {% else %}
+                                {% static 'users/images/avatar.png' %}
+                            {% endif %}
+                        {% endif %}"
+
+                         alt="User Avatar">
+                </div>
+                <div class="user-info">
+                    <h3 class="user-nickname">{% if request.user == user_message.user2 %}
+                        {{ user_message.user1.username }}
+                    {% else %}
+                        {{ user_message.user2.username }}
+                    {% endif %}</h3>
+                    <p class="user-status"></p>
+                </div>
+                <div class="user-message">
+                    <p>{{ last_message }}</p>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path
 from .views import LoginUserView, RegistrationView, EmailVerificationView, ProfileView, SettingsView, send_request, \
-    accept_request, FriendsView, reject_request, delete_friend
+    accept_request, FriendsView, reject_request, delete_friend, ChatsView
 
 app_name = 'users'
 
@@ -22,4 +22,6 @@ urlpatterns = [
     path('accept/<int:id>/', accept_request, name='accept_friend'),
     path('reject/<int:id>/', reject_request, name='reject_friend'),
     path('friends/<int:pk>', FriendsView.as_view(), name='friends'),
+
+    path('messages/', ChatsView.as_view(), name='chat_messages'),
 ]

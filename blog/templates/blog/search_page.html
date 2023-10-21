@@ -32,7 +32,7 @@
                             <p class="post-text">{{ user.description|slice:"85"|add:"..." }}</p>
                             <button class="comment-button"><a href="{% url 'users:profile' user.id %}"
                                                               class="no-underline">Profile</a></button>
-                            {% if request.user != user %}
+                            {% if request.user != user and not user in request.user.friends.all %}
                             <button class="comment-button"><a href="{% url 'users:add_friend' user.id %}"
                                                               class="no-underline">Add Friend</a></button>
                             {% endif %}
@@ -42,6 +42,9 @@
 
                 <h1>Posts:</h1>
 
+                {% if not object_list %}
+                    <h2 style="text-align: center">There no posts by your search...</h2>
+                {% else %}
                 {% for post in object_list %}
                     <div class="post">
                         <div class="user-info">
@@ -112,21 +115,18 @@
                         </form>
                     </div>
                 {% endfor %}
+                {% endif %}
             </div>
         </div>
         {% if user.is_authenticated %}
             <div class="sidebar">
-                <img src="
-                        {% if user.image %}{{ user.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}"
-                     alt="User Avatar" class="user-avatar">
-                <p class="user-status">{{ user.username }}</p>
-                <button class="profile-button"><a class="no-underline"
-                                                  href="{% url 'users:profile' user.id %}">Profile</a></button>
-                <button class="settings-button"><a class="no-underline" href="{% url 'users:settings' user.id %}">Settings</a>
-                </button>
-                <button class="logout-button"><a class="no-underline" href="{% url 'users:logout' %}">Logout</a>
-                </button>
-            </div>
+            <img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}" alt="User Avatar" class="user-avatar">
+            <p class="user-status">{{ user.username }}</p>
+            <button class="profile-button"><a class="no-underline" href="{% url 'users:profile' user.id %}">Profile</a></button>
+            <button class="settings-button"><a class="no-underline" href="{% url 'users:settings' user.id %}">Settings</a></button>
+            <button class="logout-button"><a class="no-underline" href="{% url 'users:chat_messages' %}">Chats</a></button>
+            <button class="logout-button"><a class="no-underline" href="{% url 'users:logout' %}">Logout</a></button>
+        </div>
         {% endif %}
     </div>
 {% endblock %}

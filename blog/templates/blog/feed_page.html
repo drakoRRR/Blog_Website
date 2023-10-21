@@ -96,6 +96,7 @@
             <p class="user-status">{{ user.username }}</p>
             <button class="profile-button"><a class="no-underline" href="{% url 'users:profile' user.id %}">Profile</a></button>
             <button class="settings-button"><a class="no-underline" href="{% url 'users:settings' user.id %}">Settings</a></button>
+            <button class="logout-button"><a class="no-underline" href="{% url 'users:chat_messages' %}">Chats</a></button>
             <button class="logout-button"><a class="no-underline" href="{% url 'users:logout' %}">Logout</a></button>
         </div>
     {% endif %}

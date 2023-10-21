@@ -204,7 +204,7 @@ body {
 
 .sidebar {
     width: 200px;
-    height: 330px;
+    height: 370px;
     margin-left: 20px;
     margin-top: 20px;
     background-color: #f0f0f0;
@@ -243,11 +243,6 @@ body {
 
 .profile-button:hover, .settings-button:hover, .logout-button:hover {
     background-color: #0056b3;
-}
-
-.no-underline {
-    text-decoration: none; /* Remove the underline */
-    color: inherit; /* Inherit the color from the parent div */
 }
 
 .comment-section {
@@ -299,8 +294,9 @@ body {
     color: inherit
 }
 
-  .no-underline {
-  text-decoration: none;
+.no-underline {
+    text-decoration: none;
+    color: inherit;
 }
 
 .show-more-container {

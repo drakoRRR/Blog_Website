@@ -49,7 +49,7 @@
                     <div class="user-info">
                         <img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}" alt="User Avatar"
                              class="mini-avatar-img">
-                        <div class="user-nickname"><a href="" class="no-underline">{{ user.username }}</a></div>
+                        <div class="user-nickname"><a href="{% url 'users:profile' user.id %}" class="no-underline">{{ user.username }}</a></div>
                     </div>
                     <p class="post-text">{{ user.description|slice:"85"|add:"..." }}</p>
                     <button class="comment-button"><a class="no-underline" href="{% url 'users:profile' user.id %}">Profile</a></button>
@@ -69,6 +69,7 @@
             <p class="user-status">{{ user.username }}</p>
             <button class="profile-button"><a class="no-underline" href="{% url 'users:profile' user.id %}">Profile</a></button>
             <button class="settings-button"><a class="no-underline" href="{% url 'users:settings' user.id %}">Settings</a></button>
+            <button class="logout-button"><a class="no-underline" href="{% url 'users:chat_messages' %}">Chats</a></button>
             <button class="logout-button"><a class="no-underline" href="{% url 'users:logout' %}">Logout</a></button>
         </div>
     {% endif %}

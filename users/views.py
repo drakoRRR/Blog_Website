@@ -7,7 +7,7 @@ from django.views import View
 from django.views.generic import CreateView, TemplateView, ListView, UpdateView
 
 from blog.models import Post
-from chat.models import Room
+from chat.models import Room, Message
 from common.views import CommentFormMixin
 from users.forms import UserLoginForm, UserRegisterForm, CommentForm, ProfileForm
 from users.models import User, EmailVerification, FriendRequest
@@ -98,6 +98,15 @@ class FriendsView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(FriendsView, self).get_context_data(**kwargs)
         context['friend_requests'] = FriendRequest.objects.filter(to_user=self.request.user)
+        return context
+
+class ChatsView(ListView):
+    model = Room
+    template_name = 'users/messages_page.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ChatsView, self).get_context_data(**kwargs)
+        context['last_message'] = self.object_list.last().messages.last().content
         return context
 
 
