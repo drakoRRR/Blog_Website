@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LogoutView
 from django.urls import path
 from .views import LoginUserView, RegistrationView, EmailVerificationView, ProfileView, SettingsView, send_request, \
@@ -21,7 +22,7 @@ urlpatterns = [
     path('delete-friend/<int:id>/', delete_friend, name='delete_friend'),
     path('accept/<int:id>/', accept_request, name='accept_friend'),
     path('reject/<int:id>/', reject_request, name='reject_friend'),
-    path('friends/<int:pk>', FriendsView.as_view(), name='friends'),
+    path('friends/<int:pk>', login_required(FriendsView.as_view()), name='friends'),
 
     path('messages/', ChatsView.as_view(), name='chat_messages'),
 ]

@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 
@@ -5,7 +6,7 @@ from blog.models import Post, Comment
 from users.forms import CommentForm
 
 
-class CommentFormMixin:
+class CommentFormMixin(LoginRequiredMixin):
     def post(self, request, *args, **kwargs):
         if request.POST.get('action') == 'delete':
             return self.delete_comment(request, *args, **kwargs)

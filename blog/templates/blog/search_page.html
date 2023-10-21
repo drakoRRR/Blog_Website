@@ -32,7 +32,7 @@
                             <p class="post-text">{{ user.description|slice:"85"|add:"..." }}</p>
                             <button class="comment-button"><a href="{% url 'users:profile' user.id %}"
                                                               class="no-underline">Profile</a></button>
-                            {% if request.user != user and not user in request.user.friends.all %}
+                            {% if request.user != user and not user in request.user.friends.all and user.is_authenticated %}
                             <button class="comment-button"><a href="{% url 'users:add_friend' user.id %}"
                                                               class="no-underline">Add Friend</a></button>
                             {% endif %}

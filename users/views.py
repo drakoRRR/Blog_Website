@@ -1,4 +1,5 @@
 from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
@@ -110,6 +111,7 @@ class ChatsView(ListView):
         return context
 
 
+@login_required
 def send_request(request, id):
     from_user = request.user
     to_user = User.objects.get(id=id)

@@ -28,10 +28,11 @@ class CreatePostView(CreateView):
     success_url = reverse_lazy('blog:feed')
 
     def post(self, request, *args, **kwargs):
-        form = CreatePostForm(request.POST, request.FILES)
+        form = self.form_class(request.POST, request.FILES)
         if form.is_valid():
             blog_post = form.save(commit=False)
             blog_post.author = request.user
+            blog_post.text_post = form.cleaned_data.get('description')
             blog_post.save()
             return redirect('blog:feed')
         return self.get(request, *args, **kwargs)
