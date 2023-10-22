@@ -22,9 +22,9 @@ env = environ.Env(
     REDIS_HOST=(str),
     REDIS_PORT=(int),
 
-    DB_NAME=(str),
-    DB_USER=(str),
-    DB_PASSWORD=(str),
+    POSTGRES_DB=(str),
+    POSTGRES_USER=(str),
+    POSTGRES_PASSWORD=(str),
     DB_HOST=(str),
     DB_PORT=(int),
 
@@ -120,9 +120,9 @@ INTERNAL_IPS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
+        'NAME': env('POSTGRES_DB'),
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT'),
     }
