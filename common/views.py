@@ -6,7 +6,7 @@ from blog.models import Post, Comment
 from users.forms import CommentForm
 
 
-class CommentFormMixin(LoginRequiredMixin):
+class CommentFormMixin:
     def post(self, request, *args, **kwargs):
         if request.POST.get('action') == 'delete':
             return self.delete_comment(request, *args, **kwargs)

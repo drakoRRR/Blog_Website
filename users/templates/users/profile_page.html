@@ -35,7 +35,7 @@
         {% for post in posts %}
             <div class="post">
                 <div class="user-info">
-                    <img src="{% if user.image %}{{ user.image.url }}{% else %}#{% endif %}" alt="User Avatar" class="mini-avatar">
+                    <img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}" alt="User Avatar" class="mini-avatar">
                     <div class="user-nickname"><a href="{% url 'users:profile' post.author.id %}" class="no-underline">{{ post.author.username }}</a>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                     {% for comment in post.comments.all|slice:":2" %}
                         <div class="comment">
                             <div class="user-info">
-                                <div class="mini-avatar"></div>
+                                <img src="{% if comment.author.image %}{{ comment.author.image.url }}{% else %}{% static 'users/images/avatar.png' %}{% endif %}" alt="" class="mini-avatar">
                                 <div class="user-nickname"><a href="{% url 'users:profile' comment.author.id %}"
                                                               class="no-underline">{{ comment.author.username }}</a>
                                 </div>
