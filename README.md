@@ -73,7 +73,7 @@ to verify their email.
 ## Profile
 ![profile](media_for_readme/video_usage/profile-page.gif)
 On an authorized user's page, they can access settings and edit or delete their posts. 
-On other users' pages, you can add them as friends and send them messages. 
+On other users' pages, you can add them as friends and send them messages.
 
 
 ## Add/Delete Friend
